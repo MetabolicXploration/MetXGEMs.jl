@@ -1,0 +1,2 @@
+metnet(net::MetNet) = net
+
