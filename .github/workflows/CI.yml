@@ -1,15 +1,15 @@
 name: CI
 on:
   push:
-    branches:
-      - main
-    tags: ['*']
-  pull_request:
+    tags:
+      - "v*"
 concurrency:
   # Skip intermediate builds: always.
   # Cancel intermediate builds: only if it is a pull request build.
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: ${{ startsWith(github.ref, 'refs/pull/') }}
+env:
+  JULIA_NUM_THREADS: 4
 jobs:
   test:
     name: Julia ${{ matrix.version }} - ${{ matrix.os }} - ${{ matrix.arch }} - ${{ github.event_name }}
@@ -18,7 +18,7 @@ jobs:
       fail-fast: false
       matrix:
         version:
-          - '1.6'
+#           - '1.6'
           - '1.8'
           - 'nightly'
         os:
@@ -31,6 +31,8 @@ jobs:
         with:
           version: ${{ matrix.version }}
           arch: ${{ matrix.arch }}
+      - name: Install Custom Registry
+        run: julia -e 'import Pkg; Pkg.Registry.add(Pkg.RegistrySpec(;url="https://github.com/MetabolicXploration/MetX_Registry_jl"))'
       - uses: julia-actions/cache@v1
       - uses: julia-actions/julia-buildpkg@v1
       - uses: julia-actions/julia-runtest@v1
