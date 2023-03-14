@@ -306,7 +306,7 @@ uuid = "c8ffd9c3-330d-5841-b78e-0817d7145fa1"
 version = "2.28.0+0"
 
 [[deps.MetXBase]]
-deps = ["LinearAlgebra", "Printf", "ProgressMeter", "RunTestsEnv", "SparseArrays", "Statistics", "StringRepFilter", "UnicodePlots"]
+deps = ["LinearAlgebra", "Printf", "ProgressMeter", "RunTestsEnv", "SparseArrays", "SpecialFunctions", "Statistics", "StringRepFilter", "UnicodePlots"]
 path = "/Users/Pereiro/.julia/dev/MetXBase"
 uuid = "0b8c4419-604a-4c8e-9eed-0f79de4a140e"
 version = "0.1.10"

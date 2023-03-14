@@ -1,28 +1,29 @@
 # The basic representation of a metabolic network
-struct MetNet{MT, VT} <: AbstractMetNet
+Base.@kwdef struct MetNet{MT, VT} <: AbstractMetNet
     
     # Constraints data
-    S::Union{Nothing, MT}                                          # Stoichiometric matrix M x N sparse
-    b::Union{Nothing, VT}                                          # right hand side of equation  S ν = b 
-    c::Union{Nothing, VT}                                          # reaction index of biomass 
-    lb::Union{Nothing, VT}                                         # fluxes lower bound M elements vector
-    ub::Union{Nothing, VT}                                         # fluxes upper bound M elements vector 
+    S::Union{Nothing, MT} = nothing                                          # Stoichiometric matrix M x N sparse
+    b::Union{Nothing, VT} = nothing                                          # right hand side of equation  S ν = b 
+    c::Union{Nothing, VT} = nothing                                          # obj linear coes
+    # C::Union{Nothing, MT} = nothing                                          # obj quad coes
+    lb::Union{Nothing, VT} = nothing                                         # fluxes lower bound M elements vector
+    ub::Union{Nothing, VT} = nothing                                         # fluxes upper bound M elements vector 
     
     # Meta
-    mets::Union{Nothing, Array{String,1}}                          # metabolites short-name M elements 
-    rxns::Union{Nothing, Array{String,1}}                          # reactions short-name N elements
+    mets::Union{Nothing, Array{String,1}} = nothing                          # metabolites short-name M elements 
+    rxns::Union{Nothing, Array{String,1}} = nothing                          # reactions short-name N elements
     
     # Relax types (avoid reading issues)
-    genes # ::Union{Nothing, Array{String,1}}                      # gene names 
-    rxnGeneMat # ::Union{Nothing, SparseMatrixCSC{Float64,Int}}    # 
-    grRules # ::Union{Nothing, Array{String,1}}                    # gene-reaction rule N elements vector of strings (and / or allowed)
-    metNames # ::Union{Nothing, Array{String,1}}                   # metabolites long-names M elements
-    metFormulas # ::Union{Nothing, Array{String,1}}                # metabolites formula M elements
-    rxnNames # ::Union{Nothing, Array{String,1}}                   # reactions long-names N elements
-    subSystems # ::Union{Nothing, Array{String,1}}                 # cellular component of fluxes N elements
+    genes = nothing # ::Union{Nothing, Array{String,1}}                      # gene names 
+    rxnGeneMat = nothing # ::Union{Nothing, SparseMatrixCSC{Float64,Int}}    # 
+    grRules = nothing # ::Union{Nothing, Array{String,1}}                    # gene-reaction rule N elements vector of strings (and / or allowed)
+    metNames = nothing # ::Union{Nothing, Array{String,1}}                   # metabolites long-names M elements
+    metFormulas = nothing # ::Union{Nothing, Array{String,1}}                # metabolites formula M elements
+    rxnNames = nothing # ::Union{Nothing, Array{String,1}}                   # reactions long-names N elements
+    subSystems = nothing # ::Union{Nothing, Array{String,1}}                 # cellular component of fluxes N elements
 
     # Extras
-    extras::Dict{Any, Any}                                         # to store temp data
+    extras::Dict{Any, Any} = Dict{Any, Any}()                                # to store temp data
 
     function MetNet(
             S, b, c, lb, ub, mets, rxns, 
@@ -43,35 +44,6 @@ struct MetNet{MT, VT} <: AbstractMetNet
             )
     end 
 
-end
-
-# Empty type
-function MetNet(;
-        S = nothing,
-        b = nothing,
-        c = nothing,
-        lb = nothing,
-        ub = nothing,
-        
-        mets = nothing,
-        rxns = nothing,
-
-        genes = nothing,
-        rxnGeneMat = nothing,
-        grRules = nothing,
-        metNames = nothing,
-        metFormulas = nothing,
-        rxnNames = nothing,
-        subSystems = nothing,
-        
-        extras = Dict{Any, Any}()
-    ) 
-    return MetNet(
-        S, b, c, lb, ub, mets, rxns, 
-        genes, rxnGeneMat, grRules, metNames, 
-        metFormulas, rxnNames, subSystems, 
-        extras
-    )
 end
 
 """

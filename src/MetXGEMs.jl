@@ -43,6 +43,6 @@ module MetXGEMs
     include("MetNetUtils/toy_model.jl")
 
     # exports
-    @_exportall_words()
+    @_exportall_non_underscore()
     
 end
