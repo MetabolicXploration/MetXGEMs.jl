@@ -1,4 +1,4 @@
-function balance_str(net::MetNet, ider; digits = 50)
+function balance_str(net::AbstractMetNet, ider; digits = 50)
     meti = metindex(net, ider)
     rxns = net.rxns[met_rxns(net, ider)] |> sort
     b_str = []

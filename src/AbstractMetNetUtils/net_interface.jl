@@ -1,12 +1,9 @@
-# A common interface for handling a MetNet-like object
-# The methods to be implemented are the accessors (e.g. metabolites)
+# A common interface for handling a MetNet-like objects
+# Method to implement 
+# - metnet(obj)::MetNet
+# - reactions(obj)::Vector{String} accessor to reactions ids
+# - metabolites(obj)::Vector{String} accessor to metabolites ids
+# - genes(obj)::Vector{String} accessor to genes ids
 
-# General functions
-export mets_count
-mets_count(net) = length(metabolites(net))
-
-export rxns_count
-rxns_count(net) = length(reactions(net))
-
-export genes_count
-genes_count(net) = length(genes(net))
+# default for AbstractMetNet
+metnet(net::AbstractMetNet) = net

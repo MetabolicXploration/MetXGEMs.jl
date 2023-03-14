@@ -6,7 +6,7 @@ let
     println()
 
 
-    net = MetXBase.toy_model()
+    net = MetXGEMs.toy_model()
     @test metabolites(net) == net.mets
     @test reactions(net) == net.rxns
 

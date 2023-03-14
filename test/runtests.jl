@@ -1,11 +1,21 @@
+using RunTestsEnv
+@activate_testenv
+
+using MetXBase
 using MetXGEMs
+using MetXNetHub
 using Test
+using LinearAlgebra
+
+import Random
+Random.seed!(1234)
 
 @testset "MetXGEMs.jl" begin
     
     # MetNet
     include("getters_tests.jl")
-    include("iders_tests.jl")
+    include("ider_interface_tests.jl")
+    include("lep_interface_tests.jl")
     include("net_manipulation_tests.jl")
 
     # TODO: Test convert COBREXA --> MetXNet

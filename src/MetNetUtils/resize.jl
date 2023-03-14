@@ -1,4 +1,4 @@
-export resize
+import MetXBase.resize
 function resize(net::MetNet;
         nmets = _length_or_nothing(net.mets),
         nrxns = _length_or_nothing(net.rxns),

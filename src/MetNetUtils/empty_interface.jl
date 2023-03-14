@@ -3,8 +3,6 @@
 # Then we can create a new net without them (emptyless_model)
 # WARNING: The intermediate state is inconsistent
 
-const EMPTY_SPOT = ""
-
 export empty_met!
 function _empty_met!(net::MetNet, met)
     
@@ -27,7 +25,7 @@ end
 empty_rxn!(net::MetNet, rxn) = (_empty_rxn!(net, rxn); empty_void_iders!(net))
 
 # soft del iders with not impact of the network (e.g. mets without reactions)
-export empty_void_iders!
+import MetXBase.empty_void_iders!
 function empty_void_iders!(net::MetNet; 
         iters = 500 # to be sure
     )
@@ -55,24 +53,22 @@ end
 
 # TODO: Test all this
 # return a model without EMPTY_SPOT iders
-export emptyless_model
+import MetXBase.emptyless_model
 function emptyless_model(net::MetNet)
     
-    met_idxs, rxn_idxs, genes_idxs = Colon(), Colon(), Colon()
+    metsids, rxnsids, genesids = Colon(), Colon(), Colon()
     
     if !isnothing(net.mets)
-        met_idxs = findall(net.mets .!= EMPTY_SPOT)
+        metsids = findall(net.mets .!= EMPTY_SPOT)
     end
     
     if !isnothing(net.rxns)
-        rxn_idxs = findall(net.rxns .!= EMPTY_SPOT)
+        rxnsids = findall(net.rxns .!= EMPTY_SPOT)
     end
     
     if !isnothing(net.genes)
-        genes_idxs = findall(net.genes .!= EMPTY_SPOT)
+        genesids = findall(net.genes .!= EMPTY_SPOT)
     end
 
-    return reindex(net::MetNet;
-        met_idxs, rxn_idxs, genes_idxs,
-    )
+    return reindex(net, metsids, rxnsids, genesids)
 end

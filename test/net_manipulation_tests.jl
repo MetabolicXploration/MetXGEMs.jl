@@ -5,6 +5,8 @@ let
     println("."^60)
     println()
 
+    # ---------------------------------------------------------------
+    # Empty stuff
     net = pull_net("iJR904")
     # summary(net)
     size0 = size(net)
@@ -27,11 +29,13 @@ let
 
     @test all(iszero.(dels2))
 
+    # ---------------------------------------------------------------
+    # reindex
     net0 = pull_net("ecoli_core")
-    net1 = reindex(net0; rxn_idxs = reverse(net0.rxns))
+    net1 = reindex(net0, Colon(), reverse(net0.rxns), Colon())
     @test all(net0.rxns .== reverse(net1.rxns))
-    net2 = reindex(net0; rxn_idxs = net0.rxns)
-    @test all(net0 == net2)
+    net2 = reindex(net0, Colon(), net0.rxns, Colon())
+    @test net0 == net2
 
     println()
 end

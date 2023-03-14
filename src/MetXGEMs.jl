@@ -18,6 +18,9 @@ module MetXGEMs
     include("Types/2_EchelonMetNet.jl")
     
     #! include AbstractMetNetUtils
+    include("AbstractMetNetUtils/base.jl")
+    include("AbstractMetNetUtils/extras_interface.jl")
+    include("AbstractMetNetUtils/ider_interface.jl")
     include("AbstractMetNetUtils/lep_interface.jl")
     include("AbstractMetNetUtils/net_interface.jl")
     
@@ -30,11 +33,7 @@ module MetXGEMs
     include("MetNetUtils/convert.jl")
     include("MetNetUtils/dense.jl")
     include("MetNetUtils/echelonize.jl")
-    include("MetNetUtils/empty_stuf.jl")
-    include("MetNetUtils/fixxed_reduction.jl")
-    include("MetNetUtils/getter.jl")
-    include("MetNetUtils/ider_interface.jl")
-    include("MetNetUtils/interfaces.jl")
+    include("MetNetUtils/empty_interface.jl")
     include("MetNetUtils/io.jl")
     include("MetNetUtils/net_interface.jl")
     include("MetNetUtils/queries.jl")
@@ -42,7 +41,6 @@ module MetXGEMs
     include("MetNetUtils/resize.jl")
     include("MetNetUtils/rxn_str.jl")
     include("MetNetUtils/search.jl")
-    include("MetNetUtils/setter.jl")
     include("MetNetUtils/summary.jl")
     include("MetNetUtils/toy_model.jl")
     
@@ -51,5 +49,9 @@ module MetXGEMs
     include("EchelonMetNetUtils/net_interface.jl")
     include("EchelonMetNetUtils/span.jl")
     include("EchelonMetNetUtils/summary.jl")
+
+
+    # exports
+    MetXBase.@_exportall_words()
     
 end

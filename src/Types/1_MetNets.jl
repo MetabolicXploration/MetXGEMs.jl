@@ -80,6 +80,7 @@ end
     The returned MetNet will share the non-overwritten fields.
 """
 function MetNet(template::MetNet; to_overwrite...)
+    
     new_metnet_dict = Dict{Symbol, Any}(to_overwrite)
 
     for field in fieldnames(typeof(template))
@@ -90,3 +91,13 @@ function MetNet(template::MetNet; to_overwrite...)
     return MetNet(;new_metnet_dict...)
 end
 
+function MetNet(template::MetNet, lep::LEPModel)
+    return MetNet(template;
+        S = lep.S,
+        b = lep.b, 
+        lb = lep.lb, 
+        ub = lep.ub, 
+        c = lep.c, 
+        # C = lep.C # TODO: Add C to MetNet
+    )
+end

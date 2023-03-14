@@ -1,11 +1,11 @@
 let
     println()
     println("="^60)
-    println("IDER TEST")
+    println("IDER INTERFACE TEST")
     println("."^60)
     println()
 
-    net = MetXBase.toy_model()
+    net = MetXGEMs.toy_model()
 
     for (i, rxn) in enumerate(reactions(net))
         @test rxnindex(net, i) == i
