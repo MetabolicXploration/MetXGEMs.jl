@@ -24,10 +24,11 @@ function Base.big(net::AbstractMetNet)
 end
 
 import Base.hash
-function hash(net::AbstractMetNet, h::Int = 0) 
+function hash(net::AbstractMetNet, h::UInt64 = UInt64(0)) 
     h += hash(nameof(typeof(net)))
     hash(lepmodel(net), h)
 end
+hash(net::AbstractMetNet, h::Integer) = hash(net, UInt64(h)) 
 
 import Base.show
 show(io::IO, net::AbstractMetNet) = println(io, nameof(typeof(net)), " ", size(net))
