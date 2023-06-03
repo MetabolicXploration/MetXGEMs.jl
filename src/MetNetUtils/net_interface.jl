@@ -19,8 +19,12 @@ export genes
 genes(net::MetNet) = net.genes
 genes(net::MetNet, ider) = net.genes[geneindex(net, ider)]
 
-export eachrxn
+export eachgenes
 eachgenes(net) = eachindex(genes(net))
+
+export subsystems
+subsystems(net::MetNet) = net.subSystems
+subsystems(net::MetNet, ider) = net.subSystems[rxnindex(net, ider)]
 
 export rxn_mets
 rxn_mets(net::MetNet, ider) = findall(stoi(net, :,rxnindex(net, ider)) .!= 0.0)

@@ -199,6 +199,10 @@ function _print_rxn_summary(io::IO, net, ider)
         color = INFO_COLOR
     )
     printstyled(io, 
+        " subsys: ", _get(net.subSystems, idx, nothing),  "\n" , 
+        color = INFO_COLOR
+    )
+    printstyled(io, 
         " lb: ", _get(net.lb, idx, nothing), 
         ", ub: ", _get(net.ub, idx, nothing), "\n" , 
         color = INFO_COLOR
