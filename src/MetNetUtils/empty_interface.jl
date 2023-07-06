@@ -11,7 +11,11 @@ function _empty_met!(net::MetNet, met)
     _setindex!(net.S, meti, :, zero(eltype(net.S)))
     return net
 end
-empty_met!(net::MetNet, met) = (_empty_met!(net, met); empty_void_iders!(net))
+function empty_met!(net::MetNet, met; empty_void = true) 
+    _empty_met!(net, met) 
+    empty_void && empty_void_iders!(net)
+    return net
+end
 
 export empty_rxn!
 function _empty_rxn!(net::MetNet, rxn)
@@ -22,7 +26,11 @@ function _empty_rxn!(net::MetNet, rxn)
     
     return net
 end
-empty_rxn!(net::MetNet, rxn) = (_empty_rxn!(net, rxn); empty_void_iders!(net))
+function empty_rxn!(net::MetNet, rxn; empty_void = true) 
+    _empty_rxn!(net, rxn)
+    empty_void && empty_void_iders!(net)
+    return net
+end
 
 # soft del iders with not impact of the network (e.g. mets without reactions)
 import MetXBase.empty_void_iders!
