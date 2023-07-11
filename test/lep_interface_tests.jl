@@ -7,6 +7,7 @@ let
 
     # Test lep interface
     net = pull_net("ecoli_core")
+    
     # Fundamentals
     lep = lepmodel(net)
     @test all(colids(net) .== colids(lep))
