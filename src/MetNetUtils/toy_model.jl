@@ -1,4 +1,5 @@
-function toy_model()
+import MetXBase.toy_model
+function toy_model(::Type{MetNet})
     net = Dict()
     net[:S] = 
     # rxns: gt    ferm  resp  ldh   lt   biom    atpm  # mets

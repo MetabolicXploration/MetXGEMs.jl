@@ -5,7 +5,7 @@ let
     println("."^60)
     println()
 
-    net = MetXGEMs.toy_model()
+    net = toy_model(MetNet)
 
     for (i, rxn) in enumerate(reactions(net))
         @test rxnindex(net, i) == i

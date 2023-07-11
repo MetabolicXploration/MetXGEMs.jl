@@ -1,2 +1,2 @@
 export AbstractMetNet
-abstract type AbstractMetNet end
+abstract type AbstractMetNet{MT, VT} end

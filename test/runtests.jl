@@ -14,9 +14,9 @@ Random.seed!(1234)
     
     # MetNet
     include("getters_tests.jl")
+    include("io_tests.jl")
     include("ider_interface_tests.jl")
     include("lep_interface_tests.jl")
     include("net_manipulation_tests.jl")
 
-    # TODO: Test convert COBREXA --> MetXNet
 end

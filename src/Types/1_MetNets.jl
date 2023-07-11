@@ -1,5 +1,5 @@
 # The basic representation of a metabolic network
-Base.@kwdef struct MetNet{MT, VT} <: AbstractMetNet
+Base.@kwdef struct MetNet{MT, VT} <: AbstractMetNet{MT, VT}
     
     # Constraints data
     S::Union{Nothing, MT} = nothing                                          # Stoichiometric matrix M x N sparse

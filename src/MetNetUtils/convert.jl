@@ -25,12 +25,17 @@ function convert(::Type{MetNet}, cobxa_model::COBREXA.MetabolicModel)
     return MetNet(;net...)
 end
 
-convert(::Type{COBREXA.CoreModel}, net::MetNet) = COBREXA.CoreModel(
-    isnothing(net.S) ? Float64[;;] : net.S,
-    isnothing(net.b) ? Float64[] : net.b,
-    isnothing(net.c) ? Float64[] : net.c,
-    isnothing(net.lb) ? Float64[] : net.lb,
-    isnothing(net.ub) ? Float64[] : net.ub,
-    isnothing(net.rxns) ? String[] : net.rxns,
-    isnothing(net.mets) ? String[] : net.mets,
+# lep interface
+convert(::Type{COBREXA.CoreModel}, lep::LEPModel) = COBREXA.CoreModel(
+    isnothing(lep.S) ? Float64[;;] : lep.S,
+    isnothing(lep.b) ? Float64[] : lep.b,
+    isnothing(lep.c) ? Float64[] : lep.c,
+    isnothing(lep.lb) ? Float64[] : lep.lb,
+    isnothing(lep.ub) ? Float64[] : lep.ub,
+    isnothing(lep.colids) ? String[] : lep.colids,
+    isnothing(lep.rowids) ? String[] : lep.rowids,
 )
+
+# net interface
+# TODO: add convert for Standard Models (Add more info, like subSystems, stc)
+convert(::Type{COBREXA.CoreModel}, model) = convert(COBREXA.CoreModel, lepmodel(model))

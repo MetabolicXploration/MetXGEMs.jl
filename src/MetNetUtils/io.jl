@@ -90,3 +90,21 @@ function load_net(
     
     return convert(MetNet, net)
 end
+
+
+# TODO: implement just for .mat
+function save_net(
+        lep::LEPModel,
+        mfile::AbstractString;
+        ext = last(splitext(mfile))
+    )
+
+    cobrex_model = convert(COBREXA.CoreModel, lep)
+    COBREXA.save_model(cobrex_model, mfile; extension = ext)
+    
+    return nothing
+end
+
+save_net(model, mfile::AbstractString; ext = last(splitext(mfile))) = 
+    save_net(lepmodel(model), mfile; ext)
+
