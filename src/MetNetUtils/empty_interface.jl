@@ -3,9 +3,8 @@
 # Then we can create a new net without them (emptyless_model)
 # WARNING: The intermediate state is inconsistent
 
-export empty_met!
+findfirst_empty_met(lep) = findfirst_empty_row(lep)
 function _empty_met!(net::MetNet, met)
-    
     meti = metindex(net, met)
     _setindex!(net.mets, meti, EMPTY_SPOT)
     _setindex!(net.S, meti, :, zero(eltype(net.S)))
@@ -17,7 +16,7 @@ function empty_met!(net::MetNet, met; empty_void = true)
     return net
 end
 
-export empty_rxn!
+findfirst_empty_rxn(lep) = findfirst_empty_col(lep)
 function _empty_rxn!(net::MetNet, rxn)
 
     rxni = rxnindex(net, rxn)

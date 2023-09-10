@@ -1,10 +1,10 @@
 # -------------------------------------------------------------------
 # ider interface
-export metindex
+hasmetid(model, ider) = _hasid(model, metabolites, ider)
 metindex(model, ider) = _getindex(model, metabolites, ider)
 
-export rxnindex
+hasrxnid(model, ider) = _hasid(model, reactions, ider)
 rxnindex(model, ider) = _getindex(model, reactions, ider)
 
-export geneindex
+hasgeneid(model, ider) = _hasid(model, genes, ider)
 geneindex(model, ider) = _getindex(model, genes, ider)
