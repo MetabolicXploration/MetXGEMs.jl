@@ -41,6 +41,7 @@ module MetXGEMs
     include("MetNetUtils/resize.jl")
     include("MetNetUtils/rxn_str.jl")
     include("MetNetUtils/search.jl")
+    include("MetNetUtils/set_constraint.jl")
     include("MetNetUtils/summary.jl")
     include("MetNetUtils/toy_model.jl")
 
