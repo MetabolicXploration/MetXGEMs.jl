@@ -30,31 +30,22 @@ end
 
 summary(net::MetNet; kwargs...) = summary(stdout, net; kwargs...)
 
-function summary(io::IO, net::MetNet, ider::Int)
-    _print_summary_head(io)
-    _print_rxn_summary(io, net, ider)
-    println()
-    _print_met_summary(io, net, ider)
-    println()
-end
-
-function summary(io::IO, net::MetNet, ider::String) 
+function summary(io::IO, net::MetNet, ider) 
     
-    idx = isnothing(net.mets) ? nothing : findfirst(isequal(ider), net.mets)
+    idx = try; metindex(net, ider) catch; nothing end
     if !isnothing(idx) 
         _print_summary_head(io)
         _print_met_summary(io, net, idx)
         println()
-        return
     end
     
-    idx = idx = isnothing(net.rxns) ? nothing : findfirst(isequal(ider), net.rxns)
+    idx = try; rxnindex(net, ider) catch; nothing end
     if !isnothing(idx)
         _print_summary_head(io)
         _print_rxn_summary(io, net, idx)
         println()
-        return
     end 
+    nothing
 end
 summary(net::MetNet, ider) = summary(stdout, net, ider)
 
