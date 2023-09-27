@@ -33,14 +33,14 @@ summary(net::MetNet; kwargs...) = summary(stdout, net; kwargs...)
 function summary(io::IO, net::MetNet, ider) 
     
     idx = try; metindex(net, ider) catch; nothing end
-    if !isnothing(idx) 
+    if !isnothing(idx) && idx <= length(metabolites(net))
         _print_summary_head(io)
         _print_met_summary(io, net, idx)
         println()
     end
     
     idx = try; rxnindex(net, ider) catch; nothing end
-    if !isnothing(idx)
+    if !isnothing(idx) && idx <= length(reactions(net))
         _print_summary_head(io)
         _print_rxn_summary(io, net, idx)
         println()
