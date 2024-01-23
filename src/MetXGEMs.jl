@@ -24,6 +24,7 @@ module MetXGEMs
     include("AbstractMetNetUtils/ider_interface.jl")
     include("AbstractMetNetUtils/lep_interface.jl")
     include("AbstractMetNetUtils/net_interface.jl")
+    include("AbstractMetNetUtils/posdef.jl")
     
     #! include MetNetUtils
     include("MetNetUtils/balance_str.jl")

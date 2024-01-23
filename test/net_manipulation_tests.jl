@@ -37,5 +37,15 @@ let
     net2 = reindex(net0, Colon(), net0.rxns, Colon())
     @test net0 == net2
 
+    # ---------------------------------------------------------------
+    # posdef
+    net0 = pull_net("ecoli_core")
+    net1 = posdef(net0)
+    
+    @test bkwds_boundedcount(net0) != 0
+    @test bkwds_boundedcount(net1) == 0
+    @test revscount(net0) != 0
+    @test revscount(net1) == 0
+
     println()
 end
