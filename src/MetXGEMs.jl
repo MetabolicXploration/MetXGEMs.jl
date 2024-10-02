@@ -3,7 +3,13 @@
 module MetXGEMs
 
     import COBREXA
+    import AbstractFBCModels
+    import MATFBCModels
+    import JSONFBCModels
+    import SBMLFBCModels
+
     using MetXBase
+    using MetXBase.MassExport
     using Serialization
     using MAT    
     using Serialization
@@ -47,6 +53,6 @@ module MetXGEMs
     include("MetNetUtils/toy_model.jl")
 
     # exports
-    @_exportall_non_underscore()
+    @exportall_non_underscore()
     
 end

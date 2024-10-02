@@ -54,32 +54,33 @@ function _load_from_MAT(fn::AbstractString, k = nothing)
     return _net_from_Dict(mat_dict[k])
 end
 
-
-# addapted from `COBREXA.jl`
-# TODO: make a pull request to COBREXA (DONE: waiting merge)
+# TODO: Up to COBREXA 2
+# # addapted from `COBREXA.jl`
+# # TODO: make a pull request to COBREXA (DONE: waiting merge)
 function _COBREXA_load_model(file_name::String, type)
 
-    if type == ".json"
-        net = COBREXA.load_json_model(file_name)
-    elseif type == ".xml"
-        net = COBREXA.load_sbml_model(file_name)
-    elseif type == ".mat"
-        net = COBREXA.load_mat_model(file_name)
-    elseif type == ".h5"
-        net = COBREXA.load_h5_model(file_name)
-    else
-        throw(DomainError(type, "Unknown file extension"))
-    end
+    # if type == ".json"
+    #     net = COBREXA.load_json_model(file_name)
+    # elseif type == ".xml"
+    #     net = COBREXA.load_sbml_model(file_name)
+    # elseif type == ".mat"
+    #     net = COBREXA.load_mat_model(file_name)
+    # elseif type == ".h5"
+    #     net = COBREXA.load_h5_model(file_name)
+    # else
+    #     throw(DomainError(type, "Unknown file extension"))
+    # end
 
-    return convert(COBREXA.StandardModel, net)
+    # return convert(COBREXA.CanonicalModel, net)
+    return COBREXA.load_model(file_name, COBREXA.A.CanonicalModel.Model)
 end
 
+# TODO: Up to COBREXA 2
 export load_net
 function load_net(
         mfile::AbstractString;
         ext = last(splitext(mfile))
     )
-
     if ext == ".jls"
         net = deserializa(mfile)
     elseif ext == ".mat"
@@ -91,16 +92,19 @@ function load_net(
     return convert(MetNet, net)
 end
 
-
-# TODO: implement just for .mat
+# TODO: Up to COBREXA 2
+# TODO: Up to COBREXA 2
 function save_net(
         lep::LEPModel,
         mfile::AbstractString;
         ext = last(splitext(mfile))
     )
 
-    cobrex_model = convert(COBREXA.CoreModel, lep)
-    COBREXA.save_model(cobrex_model, mfile; extension = ext)
+    # endswith(mfile, ".json") || error("Expected '.json' extension... JSON is the only implemented saving mechanisms now...")
+    # save_model(model_converted_to_json, "e_coli_core_from_sbml.json")
+
+    # cobrex_model = convert(COBREXA.CoreModel, lep)
+    # COBREXA.save_model(cobrex_model, mfile; extension = ext)
     
     return nothing
 end

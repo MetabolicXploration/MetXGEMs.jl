@@ -1,10 +1,10 @@
 using RunTestsEnv
 @activate_testenv
 
+using Test
 using MetXBase
 using MetXGEMs
 using MetXNetHub
-using Test
 using LinearAlgebra
 
 import Random
