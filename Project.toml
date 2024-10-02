@@ -1,7 +1,7 @@
 name = "MetXGEMs"
 uuid = "f53f3d78-cab5-4f57-a3bb-d62de48011ec"
 authors = ["The members of MetabolicXploration"]
-version = "0.2.0"
+version = "0.3.0"
 
 [deps]
 Statistics = "10745b16-79ce-11e8-11f9-7d13ad32a3b2"
