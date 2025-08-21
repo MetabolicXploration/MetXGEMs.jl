@@ -1,9 +1,6 @@
-using RunTestsEnv
-@activate_testenv
-
 using Test
-using MetXBase
 using MetXGEMs
+using MetXBase
 using MetXNetHub
 using LinearAlgebra
 

@@ -1,0 +1,6 @@
+[deps]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+MetXNetHub = "be9415a8-24b2-49ae-ba75-41eeaa9f722f"
+Random = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
+MetXBase = "0b8c4419-604a-4c8e-9eed-0f79de4a140e"
+LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
